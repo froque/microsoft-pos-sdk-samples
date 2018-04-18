@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CEE880B4-6D65-46FC-9F19-56500B5DA618}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>Microsoft.PointOfService.DeviceSimulators</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Microsoft.PointOfService.DeviceSimulators</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.PointOfService, Version=1.14.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Microsoft.PointOfService.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.PointOfService.ControlBase, Version=1.14.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Microsoft.PointOfService.ControlBase.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CashDrawer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckScanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keylock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Msr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PinPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PosKeyboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PosPrinter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scanner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimulatorBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CashDrawer.resx">
+      <DependentUpon>CashDrawer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckScanner.resx">
+      <DependentUpon>CheckScanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Keylock.resx">
+      <DependentUpon>Keylock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineDisplay.resx">
+      <DependentUpon>LineDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Msr.resx">
+      <DependentUpon>Msr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PinPad.resx">
+      <DependentUpon>PinPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PosKeyboard.resx">
+      <DependentUpon>PosKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PosPrinter.resx">
+      <DependentUpon>PosPrinter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scanner.resx">
+      <DependentUpon>Scanner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimulatorBase.resx">
+      <DependentUpon>SimulatorBase.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Example Service Objects\Source\ExampleServiceObjects.csproj">
+      <Project>{769c8558-61bd-4fda-b581-f850b2046991}</Project>
+      <Name>ExampleServiceObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>reg add HKLM\Software\POSfor.NET\ControlAssemblies /v Simulators /d "$(TargetDir)\"  /f /reg:32</PostBuildEvent>
+  </PropertyGroup>
+</Project>
