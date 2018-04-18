@@ -16,20 +16,20 @@ using System.Collections.Generic;
 
 namespace Microsoft.PointOfService.DeviceSimulators
 {
-	
-	#region MsrSimulatorWindow Class
-	internal class MsrSimulatorWindow : SimulatorBase
+    
+    #region MsrSimulatorWindow Class
+    internal class MsrSimulatorWindow : SimulatorBase
     {
         private System.Windows.Forms.TextBox tb1;
-		private System.Windows.Forms.TextBox tb2;
-		private System.Windows.Forms.TextBox tb3;
-		private System.Windows.Forms.TextBox tb4;
-		private System.Windows.Forms.TextBox tb5;
-		private System.Windows.Forms.TextBox tb6;
-		private System.Windows.Forms.TextBox tb7;
-		private System.Windows.Forms.TextBox tb8;
-		private System.Windows.Forms.Button SwipeCardButton;
-		private System.Windows.Forms.Button FailedSwipeButton;
+        private System.Windows.Forms.TextBox tb2;
+        private System.Windows.Forms.TextBox tb3;
+        private System.Windows.Forms.TextBox tb4;
+        private System.Windows.Forms.TextBox tb5;
+        private System.Windows.Forms.TextBox tb6;
+        private System.Windows.Forms.TextBox tb7;
+        private System.Windows.Forms.TextBox tb8;
+        private System.Windows.Forms.Button SwipeCardButton;
+        private System.Windows.Forms.Button FailedSwipeButton;
         private TextBox tb9;
         private TextBox tb10;
         private TextBox tb11;
@@ -61,42 +61,42 @@ namespace Microsoft.PointOfService.DeviceSimulators
         private Label label18;
         private TextBox tb17;
         private TextBox tb18;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
 
-		
+        
 
-		public MsrSimulatorWindow(MsrSimulator serviceObject) : base(serviceObject)
-		{
-			Invoke(new MethodDelegate(InitializeComponent));
-		}
+        public MsrSimulatorWindow(MsrSimulator serviceObject) : base(serviceObject)
+        {
+            Invoke(new MethodDelegate(InitializeComponent));
+        }
 
-		
+        
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		protected override void Dispose( bool disposing )
-		{
-			if( disposing )
-			{
-				if(components != null)
-				{
-					components.Dispose();
-				}
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                if(components != null)
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose( disposing );
+        }
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MsrSimulatorWindow));
             this.tb1 = new System.Windows.Forms.TextBox();
             this.tb2 = new System.Windows.Forms.TextBox();
@@ -453,17 +453,17 @@ namespace Microsoft.PointOfService.DeviceSimulators
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
         void MsrSimulatorWindow_Shown(object sender, EventArgs e)
         {
             UpdateCardProps();
         }
-		#endregion
-		
+        #endregion
+        
 
-		private void SwipeCardButton_Click(object sender, System.EventArgs e)
-		{
+        private void SwipeCardButton_Click(object sender, System.EventArgs e)
+        {
             MsrSimulator MSRSim = ServiceObjectReference.Target as MsrSimulator;
             if (MSRSim != null)
             {
@@ -503,15 +503,15 @@ namespace Microsoft.PointOfService.DeviceSimulators
                         null, CardType.Aamva);
                 }
             }
-		}
+        }
 
-		private void FailedSwipeButton_Click(object sender, System.EventArgs e)
-		{
-			MsrSimulator MSRSim = ServiceObjectReference.Target as MsrSimulator;
-			if (MSRSim != null)
-				MSRSim.OnCardSwipeFailed();
+        private void FailedSwipeButton_Click(object sender, System.EventArgs e)
+        {
+            MsrSimulator MSRSim = ServiceObjectReference.Target as MsrSimulator;
+            if (MSRSim != null)
+                MSRSim.OnCardSwipeFailed();
 
-		}
+        }
 
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -598,200 +598,200 @@ namespace Microsoft.PointOfService.DeviceSimulators
             return data.Substring(0, maxLen);
         }
 
-	}
+    }
 
-	#endregion
+    #endregion
 
-	#region MsrSimulator Class
-	[ServiceObjectAttribute(	DeviceType.Msr, 
-								"Microsoft Msr Simulator",
+    #region MsrSimulator Class
+    [ServiceObjectAttribute(	DeviceType.Msr, 
+                                "Microsoft Msr Simulator",
                                "Simulated service object for magnetic stripe reader", 1, 14)]
-	public class MsrSimulator : MsrBase
-	{
-		private MsrSimulatorWindow Window;
-				
-		public MsrSimulator()
-		{
-			// This is a non-Pnp device so we must set its device path here
-			DevicePath = "Microsoft Msr Simulator";
-			Properties.CapIso = true;
-			Properties.CapTransmitSentinels = true;
-			Properties.DeviceDescription = "Microsoft Msr Simulator";
+    public class MsrSimulator : MsrBase
+    {
+        private MsrSimulatorWindow Window;
+                
+        public MsrSimulator()
+        {
+            // This is a non-Pnp device so we must set its device path here
+            DevicePath = "Microsoft Msr Simulator";
+            Properties.CapIso = true;
+            Properties.CapTransmitSentinels = true;
+            Properties.DeviceDescription = "Microsoft Msr Simulator";
             Properties.CardTypeList = new List<string>(new string[] { CardTypeAamva, CardTypeBank });
-		}
+        }
 
-		~MsrSimulator()
-		{
-			Dispose(false);
-		}
+        ~MsrSimulator()
+        {
+            Dispose(false);
+        }
 
         
 
-		protected override MsrFieldData ParseMsrFieldData(byte[] track1Data, byte[] track2Data, byte[] track3Data, byte[] track4Data, CardType cardType)
-		{
-			string Track1Data = ByteArrayToString(RemoveSentinels(track1Data, '%', '?'));
-			string Track2Data = ByteArrayToString(RemoveSentinels(track2Data, ';', '?'));
+        protected override MsrFieldData ParseMsrFieldData(byte[] track1Data, byte[] track2Data, byte[] track3Data, byte[] track4Data, CardType cardType)
+        {
+            string Track1Data = ByteArrayToString(RemoveSentinels(track1Data, '%', '?'));
+            string Track2Data = ByteArrayToString(RemoveSentinels(track2Data, ';', '?'));
             string Track3Data = ByteArrayToString(RemoveSentinels(RemoveSentinels(track3Data, '%', '?'), ';', '?'));
             
 
-			// Parse Iso data
+            // Parse Iso data
             if (cardType == Microsoft.PointOfService.BaseServiceObjects.CardType.Iso)
                 return MsrDataParser.ParseIsoData(Track1Data, Track2Data);
             else
                 return MsrDataParser.ParseAamvaData(Track1Data, Track2Data, Track3Data);
-		}
-		
-		protected override MsrTrackData ParseMsrTrackData(byte[] track1Data, byte[] track2Data, byte[] track3Data, byte[] track4Data, CardType cardType)
-		{
-			MsrTrackData data = new MsrTrackData();
+        }
+        
+        protected override MsrTrackData ParseMsrTrackData(byte[] track1Data, byte[] track2Data, byte[] track3Data, byte[] track4Data, CardType cardType)
+        {
+            MsrTrackData data = new MsrTrackData();
 
-			if (TransmitSentinels)
-			{
-				// Raw data contains sentinels so just pass it through
-				data.Track1Data = (byte[]) track1Data.Clone();
-				data.Track2Data = (byte[]) track2Data.Clone();
-				data.Track3Data = (byte[]) track3Data.Clone();
-			}
-			else
-			{
-				/// remove sentinels
-				data.Track1Data = RemoveSentinels(track1Data, '%', '?');
-				data.Track2Data = RemoveSentinels(track2Data, ';', '?');
+            if (TransmitSentinels)
+            {
+                // Raw data contains sentinels so just pass it through
+                data.Track1Data = (byte[]) track1Data.Clone();
+                data.Track2Data = (byte[]) track2Data.Clone();
+                data.Track3Data = (byte[]) track3Data.Clone();
+            }
+            else
+            {
+                /// remove sentinels
+                data.Track1Data = RemoveSentinels(track1Data, '%', '?');
+                data.Track2Data = RemoveSentinels(track2Data, ';', '?');
 
                 // ISO sentinels are differnt than AAMVA
-    		    data.Track3Data = RemoveSentinels(RemoveSentinels(track3Data, ';', '?'), '%', '?'); ;
-			}
-			data.Track4Data = null;
+                data.Track3Data = RemoveSentinels(RemoveSentinels(track3Data, ';', '?'), '%', '?'); ;
+            }
+            data.Track4Data = null;
 
-			return data;
+            return data;
 
-		}
-		private byte[] RemoveSentinels(byte [] trackData, char startSentinel, char endSentinel)
-		{
-			if (trackData == null)
-				return new byte[0];
+        }
+        private byte[] RemoveSentinels(byte [] trackData, char startSentinel, char endSentinel)
+        {
+            if (trackData == null)
+                return new byte[0];
 
-			byte [] ReturnArray = null;
-			if (trackData.Length > 2 && trackData[0] == Convert.ToByte(startSentinel) && trackData[trackData.Length-1] == Convert.ToByte(endSentinel))
-			{
-				ReturnArray = new byte[trackData.Length-2];
-				Array.Copy(trackData, 1, ReturnArray, 0, ReturnArray.Length);
-			}
-			else
-			{
-				ReturnArray = (byte[]) trackData.Clone();
-			}
+            byte [] ReturnArray = null;
+            if (trackData.Length > 2 && trackData[0] == Convert.ToByte(startSentinel) && trackData[trackData.Length-1] == Convert.ToByte(endSentinel))
+            {
+                ReturnArray = new byte[trackData.Length-2];
+                Array.Copy(trackData, 1, ReturnArray, 0, ReturnArray.Length);
+            }
+            else
+            {
+                ReturnArray = (byte[]) trackData.Clone();
+            }
 
-			return ReturnArray;
-		}
+            return ReturnArray;
+        }
 
-		private string checkhealthtext;
-		public override string CheckHealthText
-		{
-			get
-			{
-				// Verify that device is open
-				VerifyState(false, false);
+        private string checkhealthtext;
+        public override string CheckHealthText
+        {
+            get
+            {
+                // Verify that device is open
+                VerifyState(false, false);
 
-				return checkhealthtext;
-			}
-		}
-
-
-		public override string					CheckHealth( HealthCheckLevel level)
-		{
-			// Verify that device is open, claimed and enabled
-			VerifyState(true, true);
-
-			// TODO: check the health of the device and return a descriptive string 
-
-			// Cache result in the CheckHealthText property
-			checkhealthtext = "Ok";
-			return checkhealthtext;
-		}
-
-		public override DirectIOData	DirectIO( int command, int data, object obj )
-		{
-			// Verify that device is open
-			VerifyState(false, false);
-			
-			return new DirectIOData(data, obj);
-		}
+                return checkhealthtext;
+            }
+        }
 
 
-		public override void Open()
-		{
-			// Device State checking done in base class
-			base.Open();
+        public override string					CheckHealth( HealthCheckLevel level)
+        {
+            // Verify that device is open, claimed and enabled
+            VerifyState(true, true);
 
-			// Initialize the CheckHealthText property to an empty string
-			checkhealthtext = "";
+            // TODO: check the health of the device and return a descriptive string 
 
-			// Set values for common statistics
-			SetStatisticValue(StatisticManufacturerName, "Microsoft Corporation");
-			SetStatisticValue(StatisticManufactureDate, "2004-05-23");
-			SetStatisticValue(StatisticModelName, "Msr Simulator");
-			SetStatisticValue(StatisticMechanicalRevision, "1.0");
-			SetStatisticValue(StatisticInterface, "Other");
+            // Cache result in the CheckHealthText property
+            checkhealthtext = "Ok";
+            return checkhealthtext;
+        }
 
-			// show simulation window
-			Window = new MsrSimulatorWindow(this);
-		}
+        public override DirectIOData	DirectIO( int command, int data, object obj )
+        {
+            // Verify that device is open
+            VerifyState(false, false);
+            
+            return new DirectIOData(data, obj);
+        }
 
-		private string ByteArrayToString(byte[] data)
-		{
+
+        public override void Open()
+        {
+            // Device State checking done in base class
+            base.Open();
+
+            // Initialize the CheckHealthText property to an empty string
+            checkhealthtext = "";
+
+            // Set values for common statistics
+            SetStatisticValue(StatisticManufacturerName, "Microsoft Corporation");
+            SetStatisticValue(StatisticManufactureDate, "2004-05-23");
+            SetStatisticValue(StatisticModelName, "Msr Simulator");
+            SetStatisticValue(StatisticMechanicalRevision, "1.0");
+            SetStatisticValue(StatisticInterface, "Other");
+
+            // show simulation window
+            Window = new MsrSimulatorWindow(this);
+        }
+
+        private string ByteArrayToString(byte[] data)
+        {
             return ASCIIEncoding.ASCII.GetString(data);
-		}
+        }
 
 
-		protected internal byte[] StringToByteArray(string source)
-		{
+        protected internal byte[] StringToByteArray(string source)
+        {
             return ASCIIEncoding.ASCII.GetBytes(source);
-		}
+        }
 
 
 
         public void OnCardSwipe(byte[] track1Data)
-		{
+        {
             GoodRead(track1Data, null, null, null, Microsoft.PointOfService.BaseServiceObjects.CardType.Iso);
-		}
+        }
 
         public void OnCardSwipe(byte[] track1Data, byte[] track2Data, byte[] track3Data, byte[] track4Data, Microsoft.PointOfService.BaseServiceObjects.CardType cardType)
         {
             GoodRead(track1Data, track2Data, track3Data, track4Data, cardType);
         }
 
-		public void OnCardSwipeFailed()
-		{
+        public void OnCardSwipeFailed()
+        {
             FailedRead(null, null, null, null, Microsoft.PointOfService.BaseServiceObjects.CardType.Unknown, ErrorCode.Failure, 0);
-		}
+        }
 
 
-		protected override void Dispose(bool disposing)
-		{
-			try
-			{
-				if(disposing)
-				{
-					Logger.Info("MsrSimulator", "Disposing class: " + this.ToString());
-					// Release the managed resources you added in
-					// this derived class here.
-				}
-				// Release the native unmanaged resources
-				// WindowThread needs to be treated as an unmanaged resource because
-				// it is a class that contain threads and windows and won't get collected
-				// by the GC
-				if (Window != null)
-					Window.Close();
-				Window = null;
-				
-			}
-			finally
-			{
-				base.Dispose(disposing);
-			}
-		}
-	}
-	
-	#endregion
+        protected override void Dispose(bool disposing)
+        {
+            try
+            {
+                if(disposing)
+                {
+                    Logger.Info("MsrSimulator", "Disposing class: " + this.ToString());
+                    // Release the managed resources you added in
+                    // this derived class here.
+                }
+                // Release the native unmanaged resources
+                // WindowThread needs to be treated as an unmanaged resource because
+                // it is a class that contain threads and windows and won't get collected
+                // by the GC
+                if (Window != null)
+                    Window.Close();
+                Window = null;
+                
+            }
+            finally
+            {
+                base.Dispose(disposing);
+            }
+        }
+    }
+    
+    #endregion
 }
